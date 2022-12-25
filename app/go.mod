@@ -1,4 +1,4 @@
-module github.com/shinobe179/json-object-sqli-sandbox
+module github.com/shinobe179/json-object-sqli-sandbox/app
 
 go 1.19
 

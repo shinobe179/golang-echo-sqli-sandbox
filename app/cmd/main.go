@@ -1,7 +1,7 @@
 package main
 
 import (
-	sandbox "github.com/shinobe179/json-object-sqli-sandbox/app"
+	app "github.com/shinobe179/json-object-sqli-sandbox/app"
 )
 
 func main() {
