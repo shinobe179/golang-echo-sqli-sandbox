@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	sandbox.Run()
+	app.Run()
 }
