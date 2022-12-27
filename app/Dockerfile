@@ -13,11 +13,11 @@ RUN apt-get update && \
 RUN useradd --uid=1001 --create-home kid
 USER kid
 
-RUN mkdir -p /home/kid/webapp/go
-WORKDIR /home/kid/webapp/go
-COPY --chown=kid:kid ./ /home/kid/webapp/go/
+RUN mkdir -p /home/kid/app/
+WORKDIR /home/kid/app/
+COPY --chown=kid:kid ./ /home/kid/app/
 
 ENV GOPATH=/home/kid/tmp/go
 ENV GOCACHE=/home/kid/tmp/go/.cache
 
-CMD ["go", "run", "./cmd/kid/main.go"]
+CMD ["go", "run", "/home/kid/app/cmd/main.go"]
