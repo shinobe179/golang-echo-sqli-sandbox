@@ -1,0 +1,28 @@
+services:
+  webapp:
+    build: ./app
+    environment:
+      MYSQL_DB_HOST: mysql
+      MYSQL_DB_PORT: 3306
+      MYSQL_DB_USER: kid
+      MYSQL_DB_PASSWORD: iamkid
+      MYSQL_DB_NAME: someservice
+    ports:
+      - "1323:1323"
+    links:
+      - mysql
+    init: true
+
+  mysql:
+    image: mysql/mysql-server:8.0.31
+    environment:
+      - "MYSQL_ROOT_HOST=%"
+      - "MYSQL_ROOT_PASSWORD=root"
+    volumes:
+      - ./sql/:/docker-entrypoint-initdb.d
+      - mysql:/var/lib/mysql
+    ports:
+      - 13306:3306
+
+volumes:
+  mysql:
