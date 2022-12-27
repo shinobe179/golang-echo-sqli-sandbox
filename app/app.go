@@ -1,9 +1,12 @@
 package app
 
 import (
+	"fmt"
 	"context"
+	"strings"
 	// "database/sql"
 	"net/http"
+	"net/url"
 	"os"
 
 	"github.com/go-sql-driver/mysql"
@@ -60,10 +63,17 @@ func connectDB() (*sqlx.DB, error) {
 	return sqlx.Open("mysql", dsn)
 }
 
+// indexHandler is a request handler for "/".
 func indexHandler(c echo.Context) error {
 	ctx := context.Background()
-	id := c.Param("id")
-	query := "SELECT name FROM users WHERE id ='" + id + "';"
+	name, _ := url.QueryUnescape(c.QueryParam("name"))
+	if name == "" {
+		return c.String(http.StatusOK, "Plz set \"name\" parameter.")
+	}
+	query := "SELECT name FROM users WHERE name LIKE '%" + name + "%';"
+	query = strings.Replace(query, "%27", "'", -1)
+	query = strings.Replace(query, "%22", "\"", -1)
+	fmt.Printf("{query: \"%s\"}\n", query)
 	users := []UserRow{}
 	if err := db.SelectContext(ctx, &users, query); err != nil {
 			return echo.NewHTTPError(http.StatusNotFound, "user not found")
