@@ -1,4 +1,4 @@
-JSON-based SQL injectionの検証用の簡易Webアプリケーション……を作ったはずが、結局SQLインジェクションなら大体なんでもござれになりました。
+GolangとGolangのWebアプリケーションフレームワークEchoの練習を兼ねて作った、JSON-based SQL injectionの検証用の簡易Webアプリケーション……のはずが、結局SQLインジェクションなら大体なんでもござれになりました。
 
 ## 起動方法
 
