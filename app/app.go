@@ -70,7 +70,7 @@ func indexHandler(c echo.Context) error {
 	if name == "" {
 		return c.String(http.StatusOK, "Plz set \"name\" parameter.")
 	}
-	query := "SELECT name FROM users WHERE name LIKE '%" + name + "%';"
+	query := "SELECT id, name FROM users WHERE name LIKE '%" + name + "%' AND is_visible = true;"
 	query = strings.Replace(query, "%27", "'", -1)
 	query = strings.Replace(query, "%22", "\"", -1)
 	fmt.Printf("{query: \"%s\"}\n", query)
